@@ -1,0 +1,88 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Ubuntu', sans-serif;
+    /* Para pegar so o necessario */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #c7cdd3;
+}
+
+.card{
+    width: 100px;
+    height: 100px;
+    position: relative;
+
+    /* o flip não entende q nossa carta é um elemento 3D, então você precisa colocar isso para passar para carta. */
+    /* Se tiver o flip, mostra a parte da frente; se não tiver, mostra a de trás. Porque a de trás tem o hidden */
+    transform-style: preserve-3d;
+    /* Animação */
+    transition: transform .5s;
+}
+
+.card_back, .card_front{
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.45);
+    /* todas as faces(EX) que estiver invertidas não vão estar visíveis */
+    backface-visibility: hidden;
+}
+
+.flip{
+    /* voce colocou o flip no inspecionar, no card */
+    transform: rotateY(180deg);
+}
+
+.card_front{
+    /* Vai deixar ao contrario, porque quando virar a carta ele acerta */
+    transform: rotateY(180deg);
+    background-color: #101c2c;
+}
+.card_back{
+    color: #101c2c;
+    background-color: #05c3ff;
+    font-size: 30px;
+}
+
+#gameOver{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    font-size: 50px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    top: 0;
+}
+
+#restart{
+    padding: 20px;
+    font-size: 20px;
+    background-color: yellow;
+    border: none;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+#gameBoard{
+    max-width: 700px;
+    display: grid;
+    grid-template: 1fr 1fr 1fr 1fr 1fr / 1fr 1fr 1fr 1fr ;
+    /* Afastamento */
+    gap: 17px;
+}
